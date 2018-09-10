@@ -1,1 +1,9 @@
 *.zip
+*.swp
+*.DS_Store
+
+first-steps-julia/source-code-files/
+first-steps-julia/test/
+first-steps-julia/testResized/
+first-steps-julia/trainResized/
+first-steps-julia/train/
