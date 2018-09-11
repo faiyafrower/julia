@@ -15,10 +15,13 @@ using StatPlots;
 gr()
 
 #Path to files and folders
-path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
+# macOS Path
+# path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
+# Ubuntu Path
+path = "/home/mishen/Documents/julia/first-steps-julia"
 
 #Read training data information
-trainData = CSV.read("$(path)/trainlabels.csv");
+trainData = CSV.read("$(path)/trainLabels.csv");
 
 # println(trainData)
 # println(trainData[:Class])
