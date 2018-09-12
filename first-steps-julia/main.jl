@@ -1,18 +1,31 @@
 using Pkg;
+#=
 Pkg.add("Images");
 Pkg.add("DataFrames");
 Pkg.add("CSV");
 Pkg.add("StatsBase");
 Pkg.add("Plots");
-Pkg.add("StatPlots");
+Pkg.add("PyPlot");
+Pkg.add("PyCall");
+Pkg.add("LaTeXStrings");
+=#
 using Images;
 using DataFrames;
 using CSV;
-using StatsBase;
 using Plots;
-using StatPlots;
+# using PyPlot, PyCall, LaTeXStrings;
+using StatsBase;
 
-pyplot()
+# pyplot()
+gr()
+
+function pushCharArray!(i::Char, j::Char, charArray)
+    for char in i:j
+        push!(charArray, char)
+    end
+
+    return charArray
+end
 
 #Path to files and folders
 # macOS Path
@@ -26,12 +39,29 @@ trainData = CSV.read("$(path)/trainLabels.csv";
                          datarow = 2,
                          types = [Int64, Char]);
 
-# println(trainDataFrame)
-println(trainDataFrame[:Class])
+# println(trainData)
+# println(trainData[:char])
 
-#Count occurence of each character in training data
-trainDataCounts = by(trainData, :Class, nrow);
-trainDataCountsSort = sort(trainDataCounts, order(:x1))
+# Sort trainData by char, then count occurences
+trainSort = sort(trainData, order(:char))
+trainCount = by(trainSort, :char, nrow)
 
+# println(trainCount)
+
+# Make bar plot viz of trainCount
+xAxisNums = Array(1:62)
+
+xAxisChars = Char[]
+pushCharArray!('0', '9', xAxisChars)
+pushCharArray!('A', 'Z', xAxisChars)
+pushCharArray!('a', 'z', xAxisChars)
+
+xAxisStrings = String[]
+for i in 1:62
+    push!(xAxisStrings, string(popfirst!(xAxisChars)))
+end
+
+trainBarPlot = Plots.bar(trainCount[:x1], xticks = (xAxisNums, xAxisStrings))
+savefig("trainBarPlot.pdf")
 # plot(trainDataCountsSort[:Row], trainDataCountsSort[:x1])
-@df trainDataCountsSort plot(:Class, :x1)
+# @df trainDataCountsSort plot(:Class, :x1)

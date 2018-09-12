@@ -1,6 +1,7 @@
 *.zip
 *.swp
 *.DS_Store
+*.pdf
 
 first-steps-julia/source-code-files/
 first-steps-julia/test/
