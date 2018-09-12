@@ -12,19 +12,22 @@ using StatsBase;
 using Plots;
 using StatPlots;
 
-gr()
+pyplot()
 
 #Path to files and folders
 # macOS Path
-# path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
+path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
 # Ubuntu Path
-path = "/home/mishen/Documents/julia/first-steps-julia"
+# path = "/home/mishen/Documents/julia/first-steps-julia"
 
 #Read training data information
-trainData = CSV.read("$(path)/trainLabels.csv");
+trainData = CSV.read("$(path)/trainLabels.csv";
+                    	 header = ["ID", "char"],
+                         datarow = 2,
+                         types = [Int64, Char]);
 
-# println(trainData)
-# println(trainData[:Class])
+# println(trainDataFrame)
+println(trainDataFrame[:Class])
 
 #Count occurence of each character in training data
 trainDataCounts = by(trainData, :Class, nrow);
