@@ -1,27 +1,14 @@
-# trainData = CSV.read("$(path)/trainLabels.csv"; types = [Int64)
+include("main.jl")
 
-# Pre-sort trainData by char
-trainSort = sort(trainData, order(:Class))
-# Then, summarizing provides correct ordering
-trainCount = by(trainSort, :Class, nrow)
+Pkg.add("Images")
+Pkg.add("QuartzImageIO") # For Mac
+Pkg.add("ImageView") # For viewing images
+Pkg.add("ImageMagick") # For importing images
 
-# Use matplotlib instead of GR Framework
-pyplot()
+using Images
+using QuartzImageIO
+using ImageView
+using ImageMagick
 
-# Initialize Char Array x
-x = Array('0':'9')
-for i in 'A':'Z'
-    push!(x, i)
-end
-for i in 'a':'z'
-    push!(x, i)
-end
-
-# Initialize equivalent String Array y
-y = String[]
-for i in 1:62
-    push!(y, string(popfirst!(x)))
-end
-
-s = Array(0:61)
-bar(trainCount[:x1], xticks=(s, y))
+img = load("testResized/9999.Bmp");
+imshow(img)
