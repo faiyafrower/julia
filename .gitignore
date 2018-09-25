@@ -2,6 +2,7 @@
 *.swp
 *.DS_Store
 *.pdf
+*.html
 
 first-steps-julia/source-code-files/
 first-steps-julia/test/
