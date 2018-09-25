@@ -16,8 +16,9 @@ using Plots;
 # using PyPlot, PyCall, LaTeXStrings;
 using StatsBase;
 
+plotly()
 # pyplot()
-gr()
+# gr()
 
 function pushCharArray!(i::Char, j::Char, charArray)
     for char in i:j
@@ -29,9 +30,9 @@ end
 
 #Path to files and folders
 # macOS Path
-path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
+# path = "/Users/mishen/Documents/GitHub/julia/first-steps-julia"
 # Ubuntu Path
-# path = "/home/mishen/Documents/julia/first-steps-julia"
+path = "/home/mishen/Documents/julia/first-steps-julia"
 
 #Read training data information
 trainData = CSV.read("$(path)/trainLabels.csv";
@@ -62,6 +63,6 @@ for i in 1:62
 end
 
 trainBarPlot = Plots.bar(trainCount[:x1], xticks = (xAxisNums, xAxisStrings))
-savefig("trainBarPlot.pdf")
+savefig("trainBarPlot.html")
 # plot(trainDataCountsSort[:Row], trainDataCountsSort[:x1])
 # @df trainDataCountsSort plot(:Class, :x1)
